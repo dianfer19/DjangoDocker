@@ -16,6 +16,22 @@ services:
       networks:
         - twitch_network
 
+
+    twitch_django:
+      container_name: twitch_django
+      build: .
+      volumes:
+        - .:/app
+        - ./staticfiles:/app/staticfiles
+      env_file:
+        - .env
+      ports:
+        - "8000:8000"
+      depends_on:
+        - twitch_postgres
+      networks:
+        - twitch_network
+
 networks:
   twitch_network:
     driver: bridge

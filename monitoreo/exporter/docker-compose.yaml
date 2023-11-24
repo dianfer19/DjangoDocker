@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  postgres-exporter:
+    image: prometheuscommunity/postgres-exporter
+    container_name: postgres-exporter
+    ports:
+      - '9187:9187'
+    environment:
+      - DATA_SOURCE_NAME=${POSTGRES_URI}
+      - PG_EXPORTER_EXTEND_QUERY_PATH=/etc/postgres_exporter/queries.yaml
+    volumes:
+      - ./queries.yaml:/etc/postgres_exporter/queries.yaml
+    networks:
+      - twitch_network
+      - prometheus
+
+networks:
+  prometheus:
+    external:
+      name: prometheus
+  twitch_network:
+    external:
+      name: twitch_network
