@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+    twitch_postgres:
+      container_name: twitch_postgres
+      image: postgres:15.3
+      volumes:
+        - ./docker_base/data/:/var/lib/postgresql/data
+        - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      environment:
+        - POSTGRES_USER=${POSTGRES_USER}
+        - POSTGRES_PASSWORD=${POSTGRES_PW}
+        - POSTGRES_DB=${POSTGRES_DB}
+      ports:
+        - "${POSTGRES_PORT_HOST}:5432"
+      restart: "no"
+      networks:
+        - twitch_network
+
+networks:
+  twitch_network:
+    driver: bridge
+    name: twitch_network
