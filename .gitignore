@@ -167,7 +167,7 @@ staticfiles
 attachments
 static/attachments/
 .vscode/
--idea/
+.idea/
 /static/accounts/
 /.vscode/
 /mediafiles/
