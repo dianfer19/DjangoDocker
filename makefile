@@ -11,26 +11,26 @@ info_container:
 
 up_twitch:
 	@echo levantando servicios de webApp DjangoDocker
-	docker-compose up -d
+	docker compose up -d
 
 down_twitch:
 	@echo parando servicios de webApp DjangoDocker
-	docker-compose down
+	docker compose down
 
 logs_services:
 	@echo mostrando logs $(services)
-	docker-compose logs -f $(services)
+	docker compose logs -f $(services)
 
 #::::::::::::::::::::::::::MONITOREO::::::::::::::::::::::::::::::
 up_monitor_by_app:
 	cd ./monitoreo/$(service)/
 	@echo levantando servicios de $(service)
-	docker-compose -f ./monitoreo/$(service)/docker-compose.yaml up -d
+	docker compose -f ./monitoreo/$(service)/docker compose.yaml up -d
 
 down_monitor_by_app:
 	cd ./monitoreo/$(service)
 	@echo parando servicios de $(service)
-	docker-compose -f ./monitoreo/$(service)/docker-compose.yaml down
+	docker compose -f ./monitoreo/$(service)/docker compose.yaml down
 
 up_monitor_all:
 	@echo ::::::::::::::::::::::::::prometheus::::::::::::::::::::::::::::::
